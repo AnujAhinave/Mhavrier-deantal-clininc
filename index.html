@@ -30,6 +30,9 @@
             50% { transform: translateY(-10px); }
         }
         .animate-subtle { animation: subtle-bounce 3s infinite ease-in-out; }
+
+        /* Thank You Page Hidden by Default */
+        #thank-you-message { display: none; }
     </style>
 </head>
 <body class="bg-[#FDFDFD] text-slate-900 antialiased">
@@ -262,7 +265,17 @@
 <section id="booking" class="py-24 bg-blue-50 scroll-mt-20">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid lg:grid-cols-2 gap-12 items-stretch">
-            <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-white text-left">
+            <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-white text-left relative overflow-hidden flex flex-col justify-center">
+                
+                <div id="thank-you-message" class="text-center py-10">
+                    <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase tracking-tight text-slate-900 mb-4">Request Received!</h3>
+                    <p class="text-slate-500 font-medium leading-relaxed">Thank you for trusting Mahavir Dental Clinic. <br> <span class="text-premium font-bold">We will WhatsApp you shortly</span> to confirm your visit.</p>
+                    <button onclick="location.reload()" class="mt-8 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-premium">New Booking</button>
+                </div>
+
                 <form id="clinic-form" class="space-y-5">
                     <h3 class="text-xl font-bold uppercase tracking-widest text-center mb-8">Priority Booking</h3>
                     <input type="text" placeholder="Patient Full Name" required class="w-full bg-slate-50 border-0 rounded-2xl px-6 py-4 text-xs font-bold uppercase outline-none focus:ring-2 focus:ring-premium">
@@ -322,6 +335,16 @@
         </div>
     </div>
 </footer>
+
+<script>
+    document.getElementById('clinic-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Hide the form
+        this.style.display = 'none';
+        // Show the thank you message
+        document.getElementById('thank-you-message').style.display = 'block';
+    });
+</script>
 
 </body>
 </html>
